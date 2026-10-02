@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+oh_modules/
+
+# Build output
+build/
+dist/
+.hvigor/
+.cxx/
+*.hap
+*.app
+
+# Generated engine WASM (built by scripts/build-harmony.sh)
+packages/core/src/wasm/*/build/
+
+# Staged web bundle: everything here is copied from apps/web/dist by
+# scripts/build-web-for-harmony.mjs, except the hand-written bridge adapter,
+# which has to survive that staging step.
+entry/src/main/resources/rawfile/web/*
+!entry/src/main/resources/rawfile/web/reel_bridge.js
+
+# Signing material must never be committed
+signing/
+*.p12
+*.cer
+*.p7b
+*.csr
+
+# Editor / OS noise
+.DS_Store
+.harmony-web-cache/
+.commandcode/
