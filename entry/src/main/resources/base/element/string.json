@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "OpenReel Video editor for HarmonyOS PC"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Reel-Edit video editor entry ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Reel-Edit"
+    }
+  ]
+}
