@@ -1,0 +1,66 @@
+{
+  "app": {
+    /*
+     * Unsigned by default.
+     *
+     * A signed HAP needs material only Huawei issues: a certificate (.cer), its
+     * key (.p12) and a provisioning profile (.p7b) bound to com.reeledit.harmony.
+     * The profile is signed by Provisionsigntool, which authenticates against a
+     * Huawei w3 account (`--username` / `--password`), so it cannot be produced
+     * offline — hence signingConfigs is empty and the build emits
+     * entry-default-unsigned.hap.
+     *
+     * To sign a build, provision the three files from a HarmonyOS developer
+     * account (AppGallery Connect, or DevEco Studio's automatic signing) and add:
+     *
+     *   "signingConfigs": [{
+     *     "name": "release",
+     *     "type": "HarmonyOS",
+     *     "material": {
+     *       "storeFile": "./signing/<name>.p12",
+     *       "storePassword": "<store password>",
+     *       "keyAlias": "<key alias>",
+     *       "keyPassword": "<key password>",
+     *       "signAlg": "SHA256withECDSA",
+     *       "certpath": "./signing/<name>.cer",
+     *       "profile": "./signing/<name>.p7b"
+     *     }
+     *   }]
+     *
+     * then set "signingConfig": "release" on the product below. Signing
+     * material is git-ignored; never commit a private key.
+     */
+    "signingConfigs": [],
+    "products": [
+      {
+        "name": "default",
+        "compileSdkVersion": "6.1.1(24)",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "targetSdkVersion": "6.1.1(24)",
+        "runtimeOS": "HarmonyOS"
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

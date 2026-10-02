@@ -1,0 +1,13 @@
+{
+  "name": "reeledit",
+  "version": "1.0.0",
+  "description": "OpenReel Video ported to HarmonyOS PC (2in1).",
+  "main": "",
+  "author": "Reel-Edit contributors",
+  "license": "MIT",
+  "modelVersion": "5.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@ohos/hypium": "1.0.19"
+  }
+}
