@@ -1,0 +1,10 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Reel-Edit entry module - OpenReel Video editor for HarmonyOS PC.",
+  "main": "",
+  "author": "Reel-Edit contributors",
+  "license": "MIT",
+  "modelVersion": "5.0.0",
+  "dependencies": {}
+}
