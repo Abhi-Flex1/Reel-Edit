@@ -14,8 +14,8 @@
 panels, Viewer, Inspector and export pipeline in `apps/web` and `packages/core` —
 is the work of the [OpenReel](https://github.com/Augani/openreel-video) developers
 and contributors, under MIT licence. This repository is a port, not a
-derivative design: the upstream source is used unmodified apart from the two
-platform fixes called out below, and all credit for the application itself
+derivative design: the upstream source is used unmodified apart from the three
+platform changes called out below, and all credit for the application itself
 belongs to them. What was added here is the HarmonyOS host (the ArkTS module,
 the native encoder, the bridge, the build and release tooling) and the Reel-Edit
 branding.
@@ -59,8 +59,7 @@ complete; every step up to that point is verified working here. Nothing else
 about the port depends on the encoder being present — editing, import and
 preview are unaffected.
 
-Two upstream behaviours are changed for this platform, both in
-`apps/web/src/desktop/`:
+Three upstream behaviours are changed for this platform:
 
 - **Window controls are not drawn in-app.** HarmonyOS renders its own minimise /
   maximise / close buttons on the window, so the editor's title bar would
@@ -72,12 +71,20 @@ Two upstream behaviours are changed for this platform, both in
   the device setting and pins the editor to dark. The host uses
   `WebDarkMode.Auto` and also pushes the system colour mode from
   `onConfigurationUpdate`.
+- **Export skips the in-page WebCodecs path.** The desktop build prefers
+  `VideoEncoder` whenever it exists, because a browser can mux to disk cheaply;
+  here that would bypass the native encoder and produce no file. Building with
+  `OPENREEL_HARMONY=1` removes it, which is the same code path the desktop build
+  already uses for ProRes/AV1 and for its ffmpeg fallback.
+
+The product mark is also gone: the OpenReel logo and wordmark no longer appear
+in the title bar or start screen, and the loading spinner is a neutral ring.
 
 ## Layout
 
 | Path | Purpose |
 | :--- | :--- |
-| `apps/web` | Upstream editor, unmodified apart from the two changes above |
+| `apps/web` | Upstream editor, unmodified apart from the three changes above |
 | `packages/core` | Upstream engine: timeline, media, audio, rendering |
 | `entry/src/main/ets/pages/Index.ets` | ArkWeb host; serves the bundle over a virtual origin |
 | `entry/src/main/ets/services/OpenReelBridge.ets` | The `window.openreel` API |
